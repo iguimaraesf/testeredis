@@ -1,10 +1,19 @@
 package com.guimaraes.cadastro.model;
 
+import java.time.LocalDate;
+
+import org.springframework.data.redis.core.RedisHash;
+
+@RedisHash("Usuario")
 public class User {
+	public enum Genero { MASCULINO, FEMININO };
+
 	private String id;
 	private String nome;
 	private String cpf;
 	private String senha;
+	private Genero genero;
+	private LocalDate nascimento;
 	
 	public String getSenha() {
 		return senha;
@@ -30,9 +39,23 @@ public class User {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
+	public Genero getGenero() {
+		return genero;
+	}
+	public void setGenero(Genero genero) {
+		this.genero = genero;
+	}
+	public LocalDate getNascimento() {
+		return nascimento;
+	}
+	public void setNascimento(LocalDate nascimento) {
+		this.nascimento = nascimento;
+	}
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", nome=" + nome + ", cpf=" + cpf + "]";
+		return "User [id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", genero=" + genero + ", nascimento="
+				+ nascimento + "]";
 	}
+	
 	
 }
