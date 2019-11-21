@@ -10,28 +10,31 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.guimaraes.cadastro.model.Usuario;
-import com.guimaraes.cadastro.service.UserServiceImpl;
+import com.guimaraes.cadastro.model.Papel;
+import com.guimaraes.cadastro.service.RoleServiceImpl;
 
 @RestController
-public class UserController {
-	private static final String URL = "/usuario";
-	
-	@Autowired
-	private UserServiceImpl service;
+public class RoleController {
 
+	private static final String URL = "/papel";
+
+	@Autowired
+	private RoleServiceImpl service;
+	
 	@PostMapping(path = URL)
-	public Usuario novoUsuario(@RequestBody @Valid Usuario user) {
+	public Papel novoPapel(@RequestBody @Valid Papel user) {
 		return service.gravar(user);
 	}
 	
 	@GetMapping(path = URL)
-	public Iterable<Usuario> obterTodos() {
+	public Iterable<Papel> obterTodos() {
 		return service.listar();
 	}
 	
 	@DeleteMapping(path = URL + "/{id}")
-	public void excluir(@PathVariable Long id) {
+	public void excluir(@PathVariable Integer id) {
 		service.excluir(id);
 	}
+
+
 }
